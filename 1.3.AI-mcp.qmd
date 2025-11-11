@@ -27,11 +27,14 @@ codex mcp add <server-name> --env VAR1=VALUE1 --env VAR2=VALUE2 -- <stdio server
 ```
 ## 推荐的MCP插件 {#sec-mcp-plugins}
 下面是我常用且推荐的一些MCP插件，配置方式请参考相应的文档。
+
 ### Tavily {#sec-tavily}
 Tavily可以提供网络搜索和网页抓取功能，非常适合需要联网搜索信息的场景。并且Tavily为每人免费提供了1000 credits/月的使用额度，足够大多数用户使用。
+
 ### Context7 {#sec-context7}
 Context7可以查看某个包或程序的最新的官方文档。单纯使用AI写代码时，往往会因为缺乏对最新文档的了解而写出过时的代码，而Context7可以很好地解决这个问题。
 Context7的网站上已经收录了很多包的文档，如果您需要的包已经被收录，那么可以直接使用Context7来查询；如果没有被收录，您可以登录Context7的网站，填写这个包的GitHub地址，Context7会自动抓取这个包的最新文档并收录。收录过程很快，一般几分钟内就能完成。
+
 ### Serena {#sec-serena}
 Serena（[GitHub: oraios/serena](https://github.com/oraios/serena)）可以把IDE风格的语义检索、符号级编辑和项目记忆作为MCP服务暴露给任意LLM，让Claude Code、Cursor、Codex等客户端在大仓库里也能“像IDE一样”定位/修改代码。
 
