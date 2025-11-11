@@ -1,0 +1,176 @@
+# 使用AI写代码 {#sec-ai-code}
+## 简介
+使用AI写代码有这么几种方式
+
+- 复制粘贴法：直接将代码片段复制到网页或本地软件的对话界面中，让AI帮忙修改或生成代码。
+    - 优点：操作简单，适合小段代码的处理。
+    - 缺点：来回复制粘贴较为繁琐；AI无法获取项目的整体上下文信息，可能导致生成的代码不符合预期。
+- 集成开发环境（IDE）插件法：在常用的IDE中安装AI插件，例如VSCode的RooCode、GitHub Copilot等，直接在编写代码时获得AI的帮助。
+    - 优点：无缝集成到开发流程中，提高效率；可以根据上下文生成更符合需求的代码。
+    - 缺点：固定在特定的IDE中使用；部分插件在操作过程中有明显延迟。
+- 命令行（CLI）工具法：使用命令行工具调用AI服务，例如使用OpenAI的Codex、Anthropic的Claude Code等，通过命令行与AI进行交互。
+    - 优点：效果在这三种方法里最佳；适合喜欢使用命令行的开发者；可以灵活地集成到各种开发流程中。
+    - 缺点：需要一定的命令行操作基础；可能需要额外的配置工作。
+
+下面我们将以Codex为例，介绍如何使用命令行工具来调用AI写代码。
+
+## 获取Codex服务 {#sec-get-codex}
+对于土豪玩家，可以直接使用官方的服务，来享受最好的体验。对于普通用户，可以查看@sec-ai-service中推荐的高性价比的Codex中转商或使用便宜的team订阅。总之，最终您会获得像下面这样的API地址和密钥：
+```
+API地址：https://api.example.com
+API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+注意，Codex的API地址与ChatGPT等对话模型的API地址有所不同，不包含`/v1/chat/completions`路径。
+
+## 安装Codex命令行工具 {#sec-install-codex-cli}
+参考[Codex CLI的官方文档](https://developers.openai.com/codex/cli/#set-up)，按照说明进行安装和配置。注意需要先按照Node.js环境。
+
+## 配置并启动Codex {#sec-config-codex}
+Codex的配置文件在`~/.codex/config.toml`位置，您需要将获取到的API地址填写到配置文件中，例如：
+```toml
+model_provider = "duckcoding"
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+network_access = "enabled"
+disable_response_storage = true
+
+[model_providers.duckcoding]
+name = "duckcoding"
+base_url = "https://api.example.com"
+wire_api = "responses"
+requires_openai_auth = true
+```
+而后在同一目录下创建 auth.json 文件，内容如下：
+```json
+{
+"OPENAI_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+```
+
+配置完成后，您可以在您的项目目录下打开终端，运行`codex`来进入Codex的交互界面，开始使用AI写代码。
+
+下面是一些常用的Codex命令和快捷键：
+
+- `codex resume`：查看并恢复历史会话。
+- codex中的快捷键：
+    - `esc`：打断codex的思考或进程，给出其他指令。
+    - 双击`esc`：回溯到某个历史节点。
+    - `Ctrl + t`：查看对话历史。
+    - `Ctrl + c`：退出codex。
+
+## （推荐）配置AGENTS.md {#sec-config-agents}
+AGENTS.md是给Codex提供预设信息的文件，也就是告诉Codex“每次进行决策时需要考虑什么”。AGENTS.md有全局和项目两种位置，分别是`~/.codex/AGENTS.md`和项目根目录下的`AGENTS.md`。建议在全局位置配置一些通用的设定，在项目位置配置一些项目相关的设定。例如，您可以在全局AGENTS.md中添加以下内容：
+
+```markdown
+#| code-fold: true
+---
+name: engineer-professional
+description: Professional software engineer strictly following SOLID, KISS, DRY, YAGNI principles, designed for experienced developers.
+---
+
+# Engineer Professional Output Style
+
+## Style Overview
+
+Professional output style based on software engineering best practices, strictly following SOLID, KISS, DRY, YAGNI principles, designed for experienced developers.
+
+## Core Behavioral Standards
+
+### 1. Dangerous Operation Confirmation Mechanism
+
+Must obtain explicit confirmation before executing the following operations:
+
+**High-risk Operations:**
+- File System: Delete files/directories, bulk modifications, move system files
+- Code Commits: `git commit`, `git push`, `git reset --hard`
+- System Configuration: Modify environment variables, system settings, permission changes
+- Data Operations: Database deletions, schema changes, bulk updates
+- Network Requests: Send sensitive data, call production APIs
+- Package Management: Global install/uninstall, update core dependencies
+
+**Confirmation Format:**
+
+⚠️ Dangerous Operation Detected
+Operation Type: [specific operation]
+Impact Scope: [detailed description]
+Risk Assessment: [potential consequences]
+
+Please confirm to continue? [requires explicit "yes", "confirm", "continue"]
+
+
+### 2. Command Execution Standards
+
+**Path Handling:**
+- Always use double quotes to wrap file paths
+- Prefer forward slashes `/` as path separators
+- Cross-platform compatibility check
+
+**Tool Priority:**
+1. `rg` (ripgrep) > `grep` for content search
+2. Specialized tools (Read/Write/Edit) > system commands
+3. Batch tool calls for improved efficiency
+
+### 3. Programming Principles Implementation
+
+**Every code change must reflect:**
+
+**KISS (Keep It Simple):**
+- Pursue ultimate simplicity in code and design
+- Reject unnecessary complexity
+- Choose the most intuitive solution
+
+**YAGNI (You Aren't Gonna Need It):**
+- Only implement currently needed functionality
+- Resist over-engineering and future feature reservations
+- Remove unused code and dependencies
+
+**DRY (Don't Repeat Yourself):**
+- Automatically identify repetitive code patterns
+- Proactively suggest abstraction and reuse
+- Unify implementation approaches for similar functionality
+
+**SOLID Principles:**
+- **S:** Ensure single responsibility, split oversized components
+- **O:** Design extensible interfaces, avoid modifying existing code
+- **L:** Ensure subtypes can replace their base types
+- **I:** Keep interfaces focused, avoid "fat interfaces"
+- **D:** Depend on abstractions, not concrete implementations
+
+### 4. Persistent Problem Solving
+
+**Behavioral Guidelines:**
+- Continue working until problems are completely resolved
+- Base responses on facts, not guesses; fully utilize tools to gather information
+- Plan extensively and reflect thoroughly before each operation
+- Read before writing, understand existing code before modifying
+
+## Response Characteristics
+
+- **Tone:** Professional, technically-oriented, concise and clear
+- **Length:** Structured and detailed, but avoid redundancy
+- **Focus:** Code quality, architectural design, best practices
+- **Validation:** Every change includes principle application explanation
+
+**Most Important:Always respond in English**
+```
+
+在项目AGENTS.md中，您可以添加一些与项目相关的设定。**这些完全可以让Codex帮您生成**，您只需要告诉它您的需求即可。例如：
+
+- 该项目的数据类型（bulk RNA-seq、scRNA-seq...）
+- 该项目使用的主要编程语言（Python、R...）
+- 该项目的主要功能模块（数据预处理、差异分析、可视化...）
+- 该项目的文件结构（src/、data/、notebooks/...）
+
+## Codex的使用技巧 {#sec-codex-tips}
+很多人在使用AI写代码时，总是感觉AI生成的代码不符合预期，或者无法解决复杂的问题。下面是一些使用Codex的技巧，能帮助您更好地利用AI写代码。
+
+- **明确任务**：在与Codex交互时，尽量明确地描述您的需求和预期结果（如生成某种图或某表格、保存到哪），并提供背景信息（如使用的包、方法、参数、参考网页等）。下面是一个例子：
+    ```
+    I have a dataframe `df` with columns `gene`, `condition`, and `expression`. I want to create a boxplot showing the distribution of `expression` for each `condition`, grouped by `gene`. Please use seaborn for plotting and save the figure as `boxplot.png`.
+    ```
+- **使用英语**：目前的证据表明，AI在处理英语时的表现通常优于其他语言，因此建议您尽量使用英语与Codex进行交互。
+- **分步进行**：对于复杂的任务，建议将任务拆分为多个小步骤，逐步与Codex进行交互。
+- **适时提醒AI搜索最新文档**：如果您将要使用的包比较小众，或者AI生成的代码在2-3次迭代后仍然错误，可以适时提醒AI去搜索最新的官方文档，以获取正确的用法。例如使用我们下一章介绍的tavily和context7工具。
+- **适时结束并开启新会话**：每个不同的任务（如质量控制、差异分析等）应当在新的会话中进行，以避免上下文混淆，并且避免浪费上下文窗口。
+- **适时压缩上下文**：当上下文过长时，而当前的任务还没有完成时，可以使用`/compact`来压缩Codex的上下文，从而腾出更多的空间。Codex的左下角会显示当前上下文的使用情况。
+

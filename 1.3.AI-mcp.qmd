@@ -1,0 +1,42 @@
+# MCP （模型上下文协议） {#sec-mcp}
+MCP非常重要，可以极大的增强AI的能力，所有我打算单独成一节来介绍它的使用方法。
+用大白话来讲，MCP相当于AI的眼睛和手脚，能让AI浏览和操作您的文件、执行命令、联网搜索实时信息等，从而让AI更好地理解和完成您的任务。在早期AI还没有内置的思考能力时，MCP甚至能让AI具备一定的“思考”能力。
+
+## MCP的协议类型和配置方法 {#sec-mcp-types}
+目前比较常用的MCP协议类型主要有两种：
+
+- stdio（标准输入输出）：需要在本地按照Node.js环境或Python环境安装相应的MCP包，然后进行配置和使用。优点是适配范围广，基本所有的AI客户端和MCP服务都支持，并且适合不需要联网的MCP服务；缺点是需要配置环境。
+- streamableHTTP（可流式HTTP）：不需要在本地安装环境，直接在AI客户端中配置MCP服务的API地址和密钥即可使用。优点是不需要配置环境，适合需要联网的MCP服务；缺点是很多MCP服务不支持这种协议。
+
+如果可能的话，推荐优先使用streamableHTTP协议。
+
+MCP服务的配置方法因AI客户端而异，需要参考相应的文档。例如，在Cherry Studio中，可以点击设置→MCP来进行配置。在Codex中，可以使用如下命令来添加MCP服务：
+```bash
+codex mcp add <server-name> --env VAR1=VALUE1 --env VAR2=VALUE2 -- <stdio server-command>
+```
+不过，大多数AI客户端都支持一种通用的JSON格式来配置MCP服务，例如：
+```json
+{
+  "mcpServers": {
+    "tavily-remote-mcp": {
+      "command": "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey=<your-api-key>",
+      "env": {}
+    }
+  }
+}
+```
+## 推荐的MCP插件 {#sec-mcp-plugins}
+下面是我常用且推荐的一些MCP插件，配置方式请参考相应的文档。
+### Tavily {#sec-tavily}
+Tavily可以提供网络搜索和网页抓取功能，非常适合需要联网搜索信息的场景。并且Tavily为每人免费提供了1000 credits/月的使用额度，足够大多数用户使用。
+### Context7 {#sec-context7}
+Context7可以查看某个包或程序的最新的官方文档。单纯使用AI写代码时，往往会因为缺乏对最新文档的了解而写出过时的代码，而Context7可以很好地解决这个问题。
+Context7的网站上已经收录了很多包的文档，如果您需要的包已经被收录，那么可以直接使用Context7来查询；如果没有被收录，您可以登录Context7的网站，填写这个包的GitHub地址，Context7会自动抓取这个包的最新文档并收录。收录过程很快，一般几分钟内就能完成。
+### Serena {#sec-serena}
+Serena（[GitHub: oraios/serena](https://github.com/oraios/serena)）可以把IDE风格的语义检索、符号级编辑和项目记忆作为MCP服务暴露给任意LLM，让Claude Code、Cursor、Codex等客户端在大仓库里也能“像IDE一样”定位/修改代码。
+
+## MCP的使用技巧 {#sec-mcp-tips}
+
+- 大部分MCP是自动触发的，AI会根据任务的需要自动调用相应的MCP服务。
+- 有时候需要手动触发MCP服务，比如在您需要AI获取最新文档或联网搜索信息时，可以**明确告诉AI使用相应的MCP服务**。例如，您可以说`Use tavily and context7 for doc` 来让AI使用Tavily和Context7服务。
+- 若您加载了较多的MCP服务，可能导致Codex在启动时出现略微的延迟，因此建议只加载必要的MCP服务。还有另一种方法是，如果您使用的服务器，可以通过`pm2`等进程管理工具来预先启动MCP服务，这样Codex在启动时就不需要等待MCP服务启动，从而减少延迟。

@@ -1,0 +1,44 @@
+# 使用AI对话 {#sec-ai-chat}
+## 简介
+与AI对话主要有两种方式：一种是通过官方提供的网页界面，另一种是通过API接口，使用本地程序进行调用。
+
+### 官方网页界面 {#sec-official-web}
+大多数AI服务提供商都会提供一个官方的网页界面，用户可以直接在浏览器中与AI进行对话。例如：[ChatGPT](https://chatgpt.com)、[Gemini](https://gemini.google.com/app)等。
+
+- 优点：无需编程基础，操作简单，适合大多数用户。
+- 缺点：功能有限，无法进行个性化定制；可能需要注册会员，有使用次数限制；可能有智能缩水。
+
+### API接口调用 {#sec-api-call}
+通过API接口调用AI服务，可以实现更灵活和强大的功能。用户可以使用一些本地的对话软件来调用AI的API接口，实现个性化的对话体验。
+
+- 优点：功能强大，可定制化；可按量付费；智能表现更好；可方便地使用多种模型。
+- 缺点：初期需要一定的配置。
+
+## 使用Cherry Studio进行AI对话 {#sec-cherry-studio}
+### 获取API地址和密钥 {#sec-get-api}
+对于土豪玩家，可以直接使用官方的API地址和密钥，来享受最好的体验。对于普通用户，可以查看@sec-ai-service 中推荐的高性价比的AI中转商。总之，最终您会获得像下面这样的API地址和密钥：
+```
+API地址：https://api.example.com/v1/chat/completions
+API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+::: {.callout-note}
+## API地址
+因为OpenAI是最先推出ChatGPT的公司，因此**OpenAI-Compatible**的API地址格式是最为通用的，绝大多数AI服务商都支持这种格式。它的格式一般就是`https://{域名}/v1/chat/completions`。有的调用软件会要求您填写API的基础地址（Base URL），即`https://{域名}`，有的会要求填到`/v1`，即`https://{域名}/v1`。使用时请注意区分。
+继OpenAI之后，其他公司也推出了自己的API接口，例如Google的Gemini API、Anthropic的Claude API等。
+:::
+
+### 下载并安装Cherry Studio {#sec-download-cherry}
+Cherry Studio是一款功能强大的本地对话软件，支持多种AI模型的调用。您可以从[Cherry Studio的官方网站](https://cherry-ai.com/)下载最新版本的安装包，并按照提示进行安装。
+
+### 配置基本AI服务并进行对话 {#sec-config-cherry}
+
+- 查看[自定义服务商](https://docs.cherry-ai.com/pre-basic/providers/zi-ding-yi-fu-wu-shang)，按照说明添加您的API地址和密钥。并在**模型管理**处添加几个常用的模型。
+- 查看[默认模型设置](https://docs.cherry-ai.com/cherry-studio/preview/settings/default-models)，将常用模型设置为默认模型，方便后续使用。建议将默认助手模型设置为最智能的模型，例如gemini-2.5-pro，快速模型和翻译模型设置为响应速度较快的模型，例如gemini-2.5-flash。
+- 查看[对话界面](https://docs.cherry-ai.com/cherry-studio/preview/chat)，开始与AI进行对话。
+    - 推荐配置：
+        - 上下文数设置为无限
+        - 代码块设置中，开启代码编辑器的所有功能
+        - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
+### （可选）配置MCP {#sec-config-mcp}
+推荐配置Tavily、Sequential thinking等MCP插件，详见@sec-mcp-plugins。
