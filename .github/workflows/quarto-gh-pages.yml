@@ -23,7 +23,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: stable
+          version: release
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
