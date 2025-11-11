@@ -28,8 +28,8 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Render book
-        run: quarto render
+      - name: Render book (HTML only)
+        run: quarto render --to html
 
       - name: Upload rendered book artifact
         uses: actions/upload-pages-artifact@v3
