@@ -25,6 +25,7 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ::: {.callout-note}
 ## API地址
 因为OpenAI是最先推出ChatGPT的公司，因此**OpenAI-Compatible**的API地址格式是最为通用的，绝大多数AI服务商都支持这种格式。它的格式一般就是`https://{域名}/v1/chat/completions`。有的调用软件会要求您填写API的基础地址（Base URL），即`https://{域名}`，有的会要求填到`/v1`，即`https://{域名}/v1`。使用时请注意区分。
+
 继OpenAI之后，其他公司也推出了自己的API接口，例如Google的Gemini API、Anthropic的Claude API等。
 :::
 
@@ -40,5 +41,6 @@ Cherry Studio是一款功能强大的本地对话软件，支持多种AI模型�
         - 上下文数设置为无限
         - 代码块设置中，开启代码编辑器的所有功能
         - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
+
 ### （可选）配置MCP {#sec-config-mcp}
 推荐配置Tavily、Sequential thinking等MCP插件，详见@sec-mcp-plugins。

@@ -25,6 +25,7 @@ codex mcp add <server-name> --env VAR1=VALUE1 --env VAR2=VALUE2 -- <stdio server
   }
 }
 ```
+
 ## 推荐的MCP插件 {#sec-mcp-plugins}
 下面是我常用且推荐的一些MCP插件，配置方式请参考相应的文档。
 

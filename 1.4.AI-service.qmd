@@ -34,3 +34,11 @@
     - 方法：首先要有个ChatGPT账号。然后前往Linux.do的“跳蚤市场”板块，寻找出售Team订阅的帖子（基本每天都有，价格在6-10元左右），购买后卖家会将Team邀请链接发送给您，点击链接加入即可。每个月到期后可以继续购买新的邀请链接续订。如果一个号的Codex额度不够用，可以多注册几个号，使用[CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI)做到轮询。
     - 优点：官方服务，稳定可靠；价格极低。
     - 缺点：需要不断购买邀请链接续订；理论上存在封号风险，但一般只封车主，不会封用户。
+- 中转商：如[DuckCoding](https://duckcoding.com/)、[Privnode](https://privnode.com/)等，价格略有不同，可查看Linux.do的相关讨论。
+    - 优点：按量付费。
+    - 缺点：性价比不如Team。
+
+## 其他
+
+- Gemini Pro: 即Gemini的网页高级版。目前有Google官方推出的学生优惠计划，可以免费获得Gemini Pro 12个月的使用权限。可能只能使用某些国家/地区的IP。建议在Linux.do上查看最新的获取方法。
+- [Consensus](https://consensus.app/)：Consensus是一个可以从学术论文中检索内容的AI。同样有教育优惠计划，可以免费获得高级版权限。
