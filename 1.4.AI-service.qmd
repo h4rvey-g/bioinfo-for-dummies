@@ -38,7 +38,11 @@
     - 优点：按量付费。
     - 缺点：性价比不如Team。
 
-## 其他
+## 其他 {#sec-other-ai}
 
+- GitHub Copilot：GitHub Copilot是微软旗下的AI编程助手，能够帮助用户更高效地编写代码。对于学生和教师，GitHub提供了免费的Copilot使用权限。
+    - 方法：前往[GitHub Education](https://github.com/education/students)页面，注册并验证您的学生或教师身份，即可免费获得Copilot的使用权限。注意，认证的时候不能开启VPN。认证时需要使用摄像头拍摄学生证。
+    - 优点：学生免费使用；可使用多家AI的模型；与VSCode集成使用体验很好。
+    - 缺点：仅限学生和教师使用。
 - Gemini Pro: 即Gemini的网页高级版。目前有Google官方推出的学生优惠计划，可以免费获得Gemini Pro 12个月的使用权限。可能只能使用某些国家/地区的IP。建议在Linux.do上查看最新的获取方法。
 - [Consensus](https://consensus.app/)：Consensus是一个可以从学术论文中检索内容的AI。同样有教育优惠计划，可以免费获得高级版权限。

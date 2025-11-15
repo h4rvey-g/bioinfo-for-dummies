@@ -13,6 +13,9 @@ book:
         - 1.2.AI-code.qmd
         - 1.3.AI-mcp.qmd
         - 1.4.AI-service.qmd
+    - part: 2.env_tool.qmd
+      chapters:
+        - 2.1.env-ide.qmd
     - summary.qmd
     - references.qmd
 

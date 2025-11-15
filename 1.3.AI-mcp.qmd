@@ -11,10 +11,13 @@ MCP非常重要，可以极大的增强AI的能力，所有我打算单独成一
 如果可能的话，推荐优先使用streamableHTTP协议。
 
 MCP服务的配置方法因AI客户端而异，需要参考相应的文档。例如，在Cherry Studio中，可以点击设置→MCP来进行配置。在Codex中，可以使用如下命令来添加MCP服务：
+
 ```bash
 codex mcp add <server-name> --env VAR1=VALUE1 --env VAR2=VALUE2 -- <stdio server-command>
 ```
+
 不过，大多数AI客户端都支持一种通用的JSON格式来配置MCP服务，例如：
+
 ```json
 {
   "mcpServers": {
