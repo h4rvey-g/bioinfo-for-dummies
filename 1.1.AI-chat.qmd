@@ -16,7 +16,7 @@
 
 ## 使用Cherry Studio进行AI对话 {#sec-cherry-studio}
 ### 获取API地址和密钥 {#sec-get-api}
-对于土豪玩家，可以直接使用官方的API地址和密钥，来享受最好的体验。对于普通用户，可以查看@sec-ai-service 中推荐的高性价比的AI中转商。总之，最终您会获得像下面这样的API地址和密钥：
+对于土豪玩家，可以直接使用官方的API地址和密钥，来享受最好的体验。对于普通用户，可以查看 @sec-ai-service 中推荐的高性价比的AI中转商。总之，最终您会获得像下面这样的API地址和密钥：
 ```
 API地址：https://api.example.com/v1/chat/completions
 API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -43,4 +43,4 @@ Cherry Studio是一款功能强大的本地对话软件，支持多种AI模型�
         - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
 
 ### （可选）配置MCP {#sec-config-mcp}
-推荐配置Tavily、Sequential thinking等MCP插件，详见@sec-mcp-plugins。
+推荐配置Tavily、Sequential thinking等MCP插件，详见 @sec-mcp-plugins 。

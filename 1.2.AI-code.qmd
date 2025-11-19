@@ -15,7 +15,7 @@
 下面我们将以Codex为例，介绍如何使用命令行工具来调用AI写代码。
 
 ## 获取Codex服务 {#sec-get-codex}
-对于土豪玩家，可以直接使用官方的服务，来享受最好的体验。对于普通用户，可以查看@sec-ai-service中推荐的高性价比的Codex中转商或使用便宜的team订阅。总之，最终您会获得像下面这样的API地址和密钥：
+对于土豪玩家，可以直接使用官方的服务，来享受最好的体验。对于普通用户，可以查看 @sec-ai-service 中推荐的高性价比的Codex中转商或使用便宜的team订阅。总之，最终您会获得像下面这样的API地址和密钥：
 ```
 API地址：https://api.example.com
 API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -173,4 +173,3 @@ Please confirm to continue? [requires explicit "yes", "confirm", "continue"]
 - **适时提醒AI搜索最新文档**：如果您将要使用的包比较小众，或者AI生成的代码在2-3次迭代后仍然错误，可以适时提醒AI去搜索最新的官方文档，以获取正确的用法。例如使用我们下一章介绍的tavily和context7工具。
 - **适时结束并开启新会话**：每个不同的任务（如质量控制、差异分析等）应当在新的会话中进行，以避免上下文混淆，并且避免浪费上下文窗口。
 - **适时压缩上下文**：当上下文过长时，而当前的任务还没有完成时，可以使用`/compact`来压缩Codex的上下文，从而腾出更多的空间。Codex的左下角会显示当前上下文的使用情况。
-
