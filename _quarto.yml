@@ -19,6 +19,7 @@ book:
         - 2.2.env-terminal.qmd
         - 2.3.env-mgmt.qmd
         - 2.4.env-version-ctrl.qmd
+        - 2.5.env-pipelines.qmd
     - summary.qmd
     - references.qmd
 
