@@ -1,0 +1,22 @@
+/*-- scss:rules --*/
+// Custom "question" callout styling.
+.callout.callout-question {
+  --callout-question-border: #0d6efd;
+  --callout-question-bg: #e7f0ff;
+  --callout-question-title: #0a58ca;
+
+  border-left: 0.25rem solid var(--callout-question-border);
+  background-color: var(--callout-question-bg);
+}
+
+.callout.callout-question .callout-title {
+  color: var(--callout-question-title);
+  font-weight: 700;
+}
+
+// Replace icon with a question mark; works whether or not Font Awesome is present.
+.callout.callout-question .callout-icon::before {
+  content: "?";
+  font-weight: 700;
+  color: var(--callout-question-title);
+}

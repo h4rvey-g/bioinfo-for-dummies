@@ -30,7 +30,7 @@ format:
     theme:
       - cosmo
       - brand
+    css: styles.scss
   pdf:
     documentclass: scrreprt
-
 
