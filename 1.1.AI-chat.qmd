@@ -51,7 +51,7 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 一般来说，各家模型在使用自己专属的API格式时，往往能获得更好的体验。例如，使用Gemini的API格式来调用Gemini模型。但如果出于某些原因您的AI客户端只支持OpenAI-Compatible格式，也可以使用这种通用格式来调用各家模型，智能不会有区别。
 :::
 
-### 配置基本AI服务并进行对话 {#sec-config-cherry}
+## 配置AI服务并进行对话 {#sec-config-cherry}
 
 配置完API地址和密钥后，您就可以开始使用Cherry Studio与AI进行对话了。不过为了获得更好的体验，我们还可以进行一些额外的配置：
 
@@ -62,5 +62,5 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
    - 在对话框处，打开“思维链长度”，设置为“斟酌”或“自动”。打开“网络搜索”，设置为“模型内置”
 
-### （可选）配置MCP {#sec-config-mcp}
+## （可选）配置MCP {#sec-config-mcp}
 推荐配置Tavily、Sequential thinking等MCP插件，详见 @sec-mcp-plugins 。

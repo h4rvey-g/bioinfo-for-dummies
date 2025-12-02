@@ -5,6 +5,8 @@ book:
   title: "学个毛生信"
   author: "Harvey Guo"
   date: "10/30/2025"
+  cover-image: bookcover.png
+  cover-image-alt: "Book cover for 学个毛生信"
   chapters:
     - index.qmd
     - part: 1.AI.qmd
@@ -33,4 +35,3 @@ format:
     css: styles.scss
   pdf:
     documentclass: scrreprt
-

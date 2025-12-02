@@ -3,3 +3,5 @@ _book
 
 /.quarto/
 **/*.quarto_ipynb
+.cache
+.quarto-deno
