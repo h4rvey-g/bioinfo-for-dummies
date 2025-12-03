@@ -37,7 +37,8 @@
 
 - **网页版**：需要一个服务器来部署服务，弄成一个网站，这样你可以在任何设备上不需要安装软件，直接输入网址就能进入这个对话的网页。适合多人使用的场景，但性能可能不佳。例如[LobeChat](https://github.com/lobehub/lobe-chat), [NextChat](https://app.nextchat.dev/)
 - **本地版**：需要安装软件在本地电脑上运行，性能更好，适合个人使用。例如[Cherry Studio](https://github.com/kangfenmao/cherry-studio), [ChatBox](https://chatboxai.app/zh)
-  :::
+
+:::
 
 ## 下载并安装Cherry Studio {#sec-download-cherry}
 
