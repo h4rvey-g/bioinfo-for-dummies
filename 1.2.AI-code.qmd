@@ -61,8 +61,7 @@ requires_openai_auth = true
 ## （推荐）配置AGENTS.md {#sec-config-agents}
 AGENTS.md是给Codex提供预设信息的文件，也就是告诉Codex“每次进行决策时需要考虑什么”。AGENTS.md有全局和项目两种位置，分别是`~/.codex/AGENTS.md`和项目根目录下的`AGENTS.md`。建议在全局位置配置一些通用的设定，在项目位置配置一些项目相关的设定。例如，您可以在全局AGENTS.md中添加以下内容：
 
-```markdown
-#| code-fold: true
+```{markdown code-fold="true" code-summary="AGENTS.md 全局示例（点击展开/收起）"}
 ---
 name: bioinformatics-professional
 description: Professional bioinformatics PhD

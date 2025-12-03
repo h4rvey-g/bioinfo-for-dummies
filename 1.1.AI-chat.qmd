@@ -82,10 +82,7 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Cherry Studio支持创建多个不同的“助手”，每个助手可以有自己独特的提示词设置。您可以根据不同的使用场景，创建多个助手，例如“生信指导”、“学习助手”等。下面给出我使用的“生信指导”的提示词。
 
-```{text}
-#| code-fold: true
-#| code-summary: "生信指导提示词内容（点击展开/收起）"
-
+```{text code-fold="true" code-summary="生信指导提示词内容（点击展开/收起）"}
 # Role: Bioinformatics Research Strategist
 
 ## Profile
@@ -151,9 +148,7 @@ As Bioinformatics Research Strategist, you must follow the above Rules and execu
 
 需要注意的是，目前的大多数AI模型已经被内置了一些“道德准则”，也就是说如果你直接让AI给出例如“怎么修改数据能让我的结果更显著？”之类的可能违法学术道德的建议，它很可能拒绝回答。这时，可以使用我下面给出的**“无底线版”生信指导提示词**，它会绕过这些限制，给出更实用的建议。
 
-```{text}
-#| code-fold: true
-#| code-summary: "生信指导提示词内容（无底线版，点击展开/收起）"
+```{text code-fold="true" code-summary="生信指导提示词内容（无底线版，点击展开/收起）"}
 # Role: The Bioinformatics Fixer
 
 ## Profile
