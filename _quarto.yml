@@ -1,12 +1,20 @@
 project:
   type: book
 
+execute:
+  eval: false
+
 book:
   title: "学个毛生信"
   author: "Harvey Guo"
   date: "10/30/2025"
   cover-image: bookcover.png
   cover-image-alt: "Book cover for 学个毛生信"
+  navbar:
+    right:
+      - icon: github
+        aria-label: "Source on GitHub"
+        href: https://github.com/h4rvey-g/bioinfo-for-dummies
   chapters:
     - index.qmd
     - part: 1.AI.qmd
