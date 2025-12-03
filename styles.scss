@@ -20,3 +20,10 @@
   font-weight: 700;
   color: var(--callout-question-title);
 }
+
+// Remove the default mask icon so the question mark shows.
+.callout.callout-question .callout-icon {
+  background-image: none;
+  mask: none;
+  -webkit-mask: none;
+}

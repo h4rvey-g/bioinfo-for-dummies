@@ -1,41 +1,51 @@
-# 使用AI对话 {#sec-ai-chat}
+# 使用AI对话：Cherry Studio {#sec-ai-chat}
+
 ## 简介
+
 与AI对话主要有两种方式：一种是通过官方提供的网页界面，另一种是通过API接口，使用本地程序进行调用。
 
 ### 官方网页界面 {#sec-official-web}
+
 大多数AI服务提供商都会提供一个官方的网页界面，用户可以直接在浏览器中与AI进行对话。例如：[ChatGPT](https://chatgpt.com)、[Gemini](https://gemini.google.com/app)等。
 
 - 优点：开箱即用，操作简单；适合移动端使用。
 - 缺点：功能有限，无法进行个性化定制；可能需要注册会员，有使用次数限制；可能有智能缩水。
 
 ### API接口调用 {#sec-api-call}
+
 通过API接口调用AI服务，可以实现更灵活和强大的功能。用户可以使用一些本地的对话软件来调用AI的API接口，实现个性化的对话体验。
 
 - 优点：功能强大，可定制化；可按量付费；智能表现更好；可方便地使用多种模型。
 - 缺点：初期需要一定的配置。
 
 ::: {.callout-tip}
+
 ## API是什么？
+
 可以把API想象成“点单窗口”。它约定了**怎么说、说什么**，让一个程序能听懂另一个程序的要求，并按规则回送结果。
 
 类比：你在奶茶店点单。店里贴了菜单（API文档），你按菜单说“要一杯少糖奶茶”（请求），店员照菜单做完交给你（响应）。店里怎么煮茶、怎么进货你不用管，只要照菜单下单就好。这就是API的作用：把复杂细节藏在后台，对外提供清晰、稳定、可重复的入口。
 :::
 
-网页界面的对话人人都会，所以下面我们主要介绍如何使用API接口进行对话。要实现这个目的，我们需要两个关键要素：**远程AI服务+本地AI客户端**。关于远程AI服务如何选择和购买，请查看@sec-ai-service 中的介绍。下文中我们主要讲解如何配置本地AI客户端：**Cherry Studio**
+网页界面的对话人人都会，所以下面我们主要介绍如何使用API接口进行对话。要实现这个目的，我们需要两个关键要素：**远程AI服务+本地AI客户端**。关于远程AI服务如何选择和购买，请查看 @sec-ai-service 中的介绍。下文中我们主要讲解如何配置本地AI客户端：**Cherry Studio**
 
 ::: {.callout-note .callout-question}
+
 ## 除了Cherry Studio，还有什么AI客户端可以选择？
+
 市面上有很多AI客户端，可以分为两种类型：
 
 - 网页版：需要一个服务器来部署服务，弄成一个网站，这样你可以在任何设备上不需要安装软件，直接输入网址就能进入这个对话的网页。适合多人使用的场景，但性能可能不佳。例如[LobeChat](https://github.com/lobehub/lobe-chat), [NextChat](https://app.nextchat.dev/)
 - 本地版：需要安装软件在本地电脑上运行，性能更好，适合个人使用。例如[Cherry Studio](https://github.com/kangfenmao/cherry-studio), [ChatBox](https://chatboxai.app/zh)
-:::
+  :::
 
 ## 下载并安装Cherry Studio {#sec-download-cherry}
+
 Cherry Studio是一款功能强大的本地对话软件，支持多种AI模型的调用。您可以从[Cherry Studio的官方网站](https://cherry-ai.com/)下载最新版本的安装包，并按照提示进行安装。
 
 ## 填写API地址和密钥 {#sec-get-api}
-安装完软件后，我们首先需要填写远程AI服务的API地址和密钥。我们假设您已经查看了@sec-ai-service 中的内容，并选择了一个合适的AI服务商。此时，您会获得像下面这样的API地址和密钥：
+
+安装完软件后，我们首先需要填写远程AI服务的API地址和密钥。我们假设您已经查看了 @sec-ai-service 中的内容，并选择了一个合适的AI服务商。此时，您会获得像下面这样的API地址和密钥：
 
 ```
 API地址：https://api.example.com/v1/chat/completions
@@ -43,7 +53,9 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ::: {.callout-note .callout-question}
+
 ## 我发现API地址似乎有很多不同的格式，比如OpenAI-Compatible、Gemini、Claude等，为什么有这么多种格式？我该选择哪一种？
+
 我们知道，OpenAI在2022年推出了第一款进入大众视野的LLM——GPT3.5，作为开山鼻祖，**OpenAI-Compatible**的API格式在此后便成为了行业中一种**通用**的范式，不管是哪家的模型都支持这种格式。它的格式一般就是`https://{域名}/v1/chat/completions`。在使用时，有的客户端会要求您填写API的基础地址（Base URL），即`https://{域名}`，有的会要求填到`/v1`，即`https://{域名}/v1`。使用时请注意区分。
 
 继OpenAI之后，整个行业出现了 “大模型军备竞赛”，如Google的Gemini、Anthropic的Claude等等模型百花齐放。各家公司为了更好地发挥自家模型的优势，纷纷推出了**自有格式**的API接口，例如Gemini的API地址一般是`https://{域名}/v1beta/models`。
@@ -57,10 +69,12 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 - 查看[默认模型设置](https://docs.cherry-ai.com/cherry-studio/preview/settings/default-models)，将常用模型设置为默认模型，方便后续使用。建议将默认助手模型设置为最智能的模型，例如gemini-2.5-pro，快速模型和翻译模型设置为响应速度较快的模型，例如gemini-2.5-flash。
 - 查看[对话界面](https://docs.cherry-ai.com/cherry-studio/preview/chat)，开始与AI进行对话。
-   - 上下文数设置为无限
-   - 代码块设置中，开启代码编辑器的所有功能
-   - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
-   - 在对话框处，打开“思维链长度”，设置为“斟酌”或“自动”。打开“网络搜索”，设置为“模型内置”
+  - 上下文数设置为无限
+  - 代码块设置中，开启代码编辑器的所有功能
+  - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
+  - 在对话框处，打开“思维链长度”，设置为“斟酌”或“自动”。打开“网络搜索”，设置为“模型内置”
+- 您可以配置来自多个服务商的模型，这样可以在一个不能用的时候切换到另一个。
 
 ## （可选）配置MCP {#sec-config-mcp}
+
 推荐配置Tavily、Sequential thinking等MCP插件，详见 @sec-mcp-plugins 。
