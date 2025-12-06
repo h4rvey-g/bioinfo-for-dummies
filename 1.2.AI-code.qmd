@@ -24,6 +24,8 @@
 
 参考[Codex CLI的官方文档](https://developers.openai.com/codex/cli/#set-up)，按照说明进行安装和配置。注意需要先按照Node.js环境。
 
+如果您使用VSCode，可以同时安装一下官方发布的Codex插件，这样可以在VSCode的侧边栏中打开Codex的交互界面，使用起来更加方便。
+
 ## 配置并启动Codex {#sec-config-codex}
 
 如果您使用的是官方的team订阅，可以直接打开codex，按照提示使用浏览器登录，选择**工作空间**即可。
@@ -192,7 +194,82 @@ notifications = true
 
 Codex的更新十分频繁，建议您定期查看[官方配置指南](https://github.com/openai/codex/blob/main/docs/config.md)，了解最新的配置选项。
 
-除此之外，一些能增强AI编程功能的MCP也是在这个文件中配置，我们将在 @sec-ai-mcp 中进行讲解。
+## 添加MCP {#sec-codex-mcp}
+
+**MCP**（Model Context Protocol）是一种让 AI 模型与外部工具、数据源进行安全、标准化交互的通用协议。简单来说，MCP 让 AI 拥有“**插件系统**”，并且可以统一、可控地访问数据库、API、文件系统、开发工具等资源。
+
+要添加一个MCP，我们可以在`~/.codex/config.toml`中添加如下配置：
+
+STDIO服务：
+
+```toml
+# The top-level table name must be `mcp_servers`
+# The sub-table name (`server-name` in this example) can be anything you would like.
+[mcp_servers.server_name]
+command = "npx"
+# Optional
+args = ["-y", "mcp-server"]
+# Optional: propagate additional env vars to the MCP server.
+# A default whitelist of env vars will be propagated to the MCP server.
+# https://github.com/openai/codex/blob/main/codex-rs/rmcp-client/src/utils.rs#L82
+env = { "API_KEY" = "value" }
+```
+
+StreamableHTTP服务：
+
+```toml
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+# Optional environment variable containing a bearer token to use for auth
+bearer_token_env_var = "ENV_VAR"
+# Optional map of headers with hard-coded values.
+http_headers = { "HEADER_NAME" = "HEADER_VALUE" }
+# Optional map of headers whose values will be replaced with the environment variable.
+env_http_headers = { "HEADER_NAME" = "ENV_VAR" }
+```
+
+部署一个MCP服务通常有STDIO或StreamableHTTP两种方式，STDIO需要本地安装Node.js或Python环境，而StreamableHTTP则不需要本地安装环境，但需要网络连接。推荐优先使用StreamableHTTP方式。
+
+### 推荐的MCP服务 {#sec-codex-mcp-plugins}
+
+下面是我常用且推荐的一些MCP服务。
+
+- **Tavily**：提供网络搜索和网页抓取功能，非常适合需要联网搜索信息的场景。并且Tavily为每人免费提供了1000 credits/月的使用额度，足够大多数用户使用。当然，如今Codex已经内置了OpenAI的网络搜索功能，速度很快，可以优先使用。如果您觉得Codex的网络搜索功能不够用，或者您使用的AI客户端没有内置网络搜索功能，那么可以考虑使用Tavily。
+- **Context7**：可以查看某个包或程序的最新的官方文档。单纯使用AI写代码时，往往会因为缺乏对最新文档的了解而写出过时的代码，而Context7可以很好地解决这个问题。Context7的网站上已经收录了很多包的文档，如果您需要的包已经被收录，那么可以直接使用Context7来查询；如果没有被收录，您可以登录Context7的网站，填写这个包的GitHub地址，Context7会自动抓取这个包的最新文档并收录。收录过程很快，一般几分钟内就能完成。
+- **Serena**：可以把IDE风格的语义检索、符号级编辑和项目记忆作为MCP服务暴露给任意LLM，让Claude Code、Cursor、Codex等客户端在大仓库里也能“像IDE一样”定位/修改代码。
+- **OpenSpec**：可以根据你的需求生成一个计划，您可以检查该计划，认可后让AI按照计划一步步执行。其目的是避免AI误解任务，从而生成不符合预期的代码。
+- **Sequential Thinking**：把复杂任务拆成多步“思维链”，支持分支和回溯，适合需要严谨规划/推理的场景。
+- **Claude Scientific Skills**：收录跨学科（含生信）120+ 科研技能模版，回答前可检索相关技巧，减少遗漏关键步骤；托管地址 `https://mcp.k-dense.ai/claude-scientific-skills/mcp` 可直接使用。
+
+下面是上述MCP服务的Codex配置，您可以复制到`~/.codex/config.toml`中。**注意替换掉`...`部分为您的API Key或密钥**。
+
+```toml
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+http_headers = { "CONTEXT7_API_KEY" = "..." }
+timeout = 20000
+
+[mcp_servers.tavily]
+url = "https://mcp.tavily.com/mcp/?tavilyApiKey=..."
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://wget.la/https://github.com/oraios/serena.git", "serena", "start-mcp-server", "--context", "ide-assistant"]
+timeout = 60000
+
+[mcp_servers."sequential-thinking"]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers."claude-scientific-skills"]
+url = "https://mcp.k-dense.ai/claude-scientific-skills/mcp"
+```
+
+### MCP的使用技巧 {#sec-mcp-tips}
+
+- 大部分MCP是自动触发的，AI会根据任务的需要自动调用相应的MCP服务。
+- 有时候需要手动触发MCP服务，比如在您需要AI获取最新文档或联网搜索信息时，可以**明确告诉AI使用相应的MCP服务**。例如，您可以说`Use tavily and context7 for doc` 来让AI使用Tavily和Context7服务。
+- 若您加载了较多的MCP服务，可能导致Codex在启动时出现略微的延迟，因此建议只加载必要的MCP服务。还有另一种方法是，如果您使用的服务器，可以通过`pm2`等进程管理工具来预先启动MCP服务，这样Codex在启动时就不需要等待MCP服务启动，从而减少延迟。
 
 ## Codex的使用技巧 {#sec-codex-tips}
 
@@ -210,6 +287,8 @@ Codex的更新十分频繁，建议您定期查看[官方配置指南](https://g
 - **适时压缩上下文**：当上下文过长时，而当前的任务还没有完成时，可以使用`/compact`来压缩Codex的上下文，从而腾出更多的空间。Codex的左下角会显示当前上下文的使用情况。
 
 ::: {.callout-tip}
+
 ## Tip
+
 您给AI提供的信息越多，AI就越能理解您的意图，它为了完成任务而猜测的成分就越少，生成的代码也就越符合您的预期！
 :::

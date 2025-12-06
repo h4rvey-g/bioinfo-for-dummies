@@ -21,7 +21,6 @@ book:
       chapters:
         - 1.1.AI-chat.qmd
         - 1.2.AI-code.qmd
-        - 1.3.AI-mcp.qmd
         - 1.4.AI-service.qmd
     - part: 2.env_tool.qmd
       chapters:
