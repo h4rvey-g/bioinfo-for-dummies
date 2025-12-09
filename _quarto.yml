@@ -39,7 +39,9 @@ format:
   html:
     theme:
       light: cosmo
-      dark: slate
+      dark:
+        - slate
+        - dark.scss
     css: styles.scss
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
