@@ -34,6 +34,8 @@ book:
     - references.qmd
 
 bibliography: references.bib
+date-modified: last-modified
+date-format: "YYYY-MM-DD"
 
 format:
   html:
@@ -41,5 +43,7 @@ format:
       - cosmo
       - brand
     css: styles.scss
+    page-footer:
+      right: "最近更新：{{< meta date-modified >}}"
   pdf:
     documentclass: scrreprt
