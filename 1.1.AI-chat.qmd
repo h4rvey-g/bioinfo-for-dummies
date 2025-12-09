@@ -225,4 +225,4 @@ As The Bioinformatics Fixer, you must follow the above Rules and execute tasks a
 
 ## （可选）配置MCP {#sec-config-mcp}
 
-推荐配置Tavily、Sequential thinking等MCP插件，详见 @sec-mcp-plugins 。
+可以配置Tavily、Sequential thinking等MCP插件，详见 @sec-codex-mcp 。不过我认为对于单纯对话来说，MCP的作用并不大，而且会拖延响应速度，所以这里作为可选项。
