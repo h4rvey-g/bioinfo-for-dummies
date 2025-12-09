@@ -1,10 +1,19 @@
 /*-- scss:rules --*/
-// Custom "question" callout styling.
-.callout.callout-question {
+// Theme-aware colors for custom question callouts.
+:root {
   --callout-question-border: #0d6efd;
   --callout-question-bg: #e7f0ff;
   --callout-question-title: #0a58ca;
+}
 
+body.quarto-dark {
+  --callout-question-border: #66b0ff;
+  --callout-question-bg: #0f1a2b;
+  --callout-question-title: #d4e6ff;
+}
+
+// Custom "question" callout styling.
+.callout.callout-question {
   border-left: 0.25rem solid var(--callout-question-border);
   background-color: var(--callout-question-bg);
 }

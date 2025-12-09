@@ -38,8 +38,8 @@ date-format: "YYYY-MM-DD"
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: cosmo
+      dark: slate
     css: styles.scss
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
