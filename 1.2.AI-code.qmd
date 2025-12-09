@@ -18,7 +18,7 @@
 
 ## 获取Codex服务 {#sec-get-codex}
 
-查看 @sec-ai-service 中的说明，推荐首选team订阅，其次使用中转商服务。
+查看 @sec-codex-service 中的说明，推荐首选team订阅，其次使用中转商服务。
 
 ## 安装Codex命令行工具 {#sec-install-codex-cli}
 
