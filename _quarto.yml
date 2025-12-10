@@ -16,10 +16,8 @@ book:
       - icon: bar-chart-line
         text: Analytics
         href: https://cloud.umami.is/share/eFyIpuQq1Nhdxj77
-  navbar:
-    right:
       - icon: github
-        aria-label: "Source on GitHub"
+        text: GitHub
         href: https://github.com/h4rvey-g/bioinfo-for-dummies
   chapters:
     - index.qmd
@@ -47,6 +45,7 @@ format:
       dark: [cosmo, dark.scss]
     css: styles.scss
     include-in-header: include/umami.html
+    include-after-body: include/cusdis.html
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
   pdf:
