@@ -2,6 +2,15 @@
   data-host="https://cusdis.com"
   data-app-id="aef28c30-8eb9-4411-979e-1cc9a113e070">
 </div>
+<style>
+  /* Prevent inner Cusdis iframe from adding its own scrollbar by giving it room */
+  #cusdis_thread iframe {
+    width: 100%;
+    min-height: 520px;
+    height: 100%;
+    overflow: visible;
+  }
+</style>
 <script>
   // Set page-specific metadata for Cusdis from the current document context
   (function () {
