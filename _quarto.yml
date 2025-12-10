@@ -11,6 +11,11 @@ book:
   cover-image: bookcover_v2.png
   cover-image-alt: "Book cover for 学个毛生信"
   favicon: favicon.svg
+  sidebar:
+    tools:
+      - icon: bar-chart-line
+        text: Analytics
+        href: https://cloud.umami.is/share/eFyIpuQq1Nhdxj77
   navbar:
     right:
       - icon: github
@@ -41,6 +46,7 @@ format:
       light: cosmo
       dark: [cosmo, dark.scss]
     css: styles.scss
+    include-in-header: include/umami.html
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
   pdf:
