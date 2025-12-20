@@ -22,7 +22,9 @@
 
 ## 安装Codex命令行工具 {#sec-install-codex-cli}
 
-参考[Codex CLI的官方文档](https://developers.openai.com/codex/cli/#set-up)，按照说明进行安装和配置。注意需要先按照Node.js环境。
+推荐使用 @sec-env-mgmt 中介绍的Pixi来安装Codex，可以自动同时安装所需的依赖。命令为`pixi global install codex`。
+
+您也可以参考[Codex CLI的官方文档](https://developers.openai.com/codex/cli/#set-up)，按照说明进行安装和配置。注意需要先手动安装Node.js环境。
 
 如果您使用VSCode，可以同时安装一下官方发布的Codex插件，这样可以在VSCode的侧边栏中打开Codex的交互界面，使用起来更加方便。
 
@@ -32,7 +34,7 @@
 
 如果您使用的是中转商服务，则需要进行一些额外的配置。首先您会从中转商获得API地址和Key，如下所示：
 
-```
+```text
 API地址：https://api.example.com
 API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
@@ -275,7 +277,7 @@ url = "https://mcp.k-dense.ai/claude-scientific-skills/mcp"
 
 很多人在使用AI写代码时，总是感觉AI生成的代码不符合预期，或者无法解决复杂的问题。下面是一些使用Codex的技巧，能帮助您更好地利用AI写代码。
 
-- **明确任务**：在与Codex交互时，尽量明确地描述您的需求和预期结果（如生成某种图或某表格、保存到哪），并提供背景信息（如使用的包、方法、参数、参考网页等）。下面是一个例子： *I have a dataframe df with columns gene, condition, and expression. I want to create a boxplot showing the distribution of expression for each condition, grouped by gene. Please use seaborn for plotting and save the figure as boxplot.png.* 这个例子中包含的元素有：
+- **明确任务**：在与Codex交互时，尽量明确地描述您的需求和预期结果（如生成某种图或某表格、保存到哪），并提供背景信息（如使用的包、方法、参数、参考网页等）。下面是一个例子： _I have a dataframe df with columns gene, condition, and expression. I want to create a boxplot showing the distribution of expression for each condition, grouped by gene. Please use seaborn for plotting and save the figure as boxplot.png._ 这个例子中包含的元素有：
   - 输入对象是`df`，`df`中有三列，分别是`gene`、`condition`和`expression`。
   - 需要生成的图是箱线图（boxplot），展示`expression`在不同`condition`下的分布情况，并且按`gene`进行分组。
   - 使用的绘图库是`seaborn`。
