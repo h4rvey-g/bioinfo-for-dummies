@@ -33,7 +33,8 @@ book:
         - 2.3.env-mgmt.qmd
         - 2.4.env-version-ctrl.qmd
         - 2.5.env-pipelines.qmd
-    - part: 3.bioinfo_exp.qmd
+    - 3.bioinfo_exp.qmd
+    - 4.acknowledge.qmd
 
 bibliography: references.bib
 date-modified: last-modified
