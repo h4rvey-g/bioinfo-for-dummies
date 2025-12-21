@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{stys/beautybook-bottompage}[2024/07/01,v2.0]
-\usepackage[ISBN=978-80-85955-35-4,SC0]{ean13isbn}
+% NOTE: ean13isbn requires the OCR-B font (ocrb*.tfm) which may be missing.
+% We skip it here to avoid build failures; ISBN will render as plain text if used.
 \makeatletter
 %%----------------------------------封面信息定义--------------------------------------------------------%%
 \newcommand\summary[1]{\def\@summary{#1}}
@@ -58,7 +59,6 @@
 }
 \makeatother
 \endinput
-
 
 
 

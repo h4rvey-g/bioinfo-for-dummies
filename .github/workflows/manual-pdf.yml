@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install system fonts (CJK + Latin)
         run: |
@@ -32,8 +34,22 @@ jobs:
       - name: Point Quarto to this Python
         run: echo "QUARTO_PYTHON=$(which python)" >> $GITHUB_ENV
 
-      - name: Install TinyTeX
-        run: quarto install tinytex --no-prompt
+      - name: Cache TinyTeX
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.TinyTeX
+            ~/.texlive
+            ~/.tlmgr
+          key: ${{ runner.os }}-tinytex-v1
+          restore-keys: |
+            ${{ runner.os }}-tinytex-
+
+      - name: Install TinyTeX (if missing)
+        run: |
+          if [ ! -d "$HOME/.TinyTeX" ] && [ ! -d "$HOME/.texlive" ]; then
+            quarto install tinytex --no-prompt
+          fi
 
       - name: Render book (PDF)
         run: quarto render --to pdf
