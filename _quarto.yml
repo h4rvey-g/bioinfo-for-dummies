@@ -63,5 +63,8 @@ format:
       - a4paper
       - fontset=none
     pdf-engine: xelatex
+    latex-tlmgr-opts:
+      - --repository
+      - https://mirror.ctan.org/systems/texlive/tlnet
     include-in-header: include/beautybook-preamble.tex
     include-before-body: include/beautybook-before-body.tex

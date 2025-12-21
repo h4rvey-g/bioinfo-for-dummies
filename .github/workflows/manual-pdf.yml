@@ -41,7 +41,7 @@ jobs:
             ~/.TinyTeX
             ~/.texlive
             ~/.tlmgr
-          key: ${{ runner.os }}-tinytex-v1
+          key: ${{ runner.os }}-tinytex-2025-v1
           restore-keys: |
             ${{ runner.os }}-tinytex-
 
