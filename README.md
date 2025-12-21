@@ -89,4 +89,4 @@
 
 如果本书对您有所帮助，可以考虑请作者喝杯咖啡 😋
 
-![打赏](img/qr_code.jpg){width=300px}
+<img src="img/qr_code.jpg" width="200">
