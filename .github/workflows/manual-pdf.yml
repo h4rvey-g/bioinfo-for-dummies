@@ -51,6 +51,17 @@ jobs:
             quarto install tinytex --no-prompt
           fi
 
+      - name: Install TeX packages (ctex)
+        run: |
+          TLMGR="$HOME/.TinyTeX/bin/$(uname -m)-linux/tlmgr"
+          if [ -x "$TLMGR" ]; then
+            "$TLMGR" option repository https://mirror.ctan.org/systems/texlive/tlnet
+            "$TLMGR" install ctex pgf tcolorbox tabularray thmtools thm-restate cncolours ninecolors bropd imakeidx titlesec titletoc ulem varwidth adjustbox pifont mathrsfs extarrows anyfontsize appendix enumitem
+          else
+            tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
+            tlmgr install ctex pgf tcolorbox tabularray thmtools thm-restate cncolours ninecolors bropd imakeidx titlesec titletoc ulem varwidth adjustbox pifont mathrsfs extarrows anyfontsize appendix enumitem
+          fi
+
       - name: Render book (PDF)
         run: quarto render --to pdf
 
