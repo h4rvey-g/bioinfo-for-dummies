@@ -56,10 +56,10 @@ jobs:
           TLMGR="$HOME/.TinyTeX/bin/$(uname -m)-linux/tlmgr"
           if [ -x "$TLMGR" ]; then
             "$TLMGR" option repository https://mirror.ctan.org/systems/texlive/tlnet
-            "$TLMGR" install ctex pgf tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
+            "$TLMGR" install ctex pgf tikz-cd tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
           else
             tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-            tlmgr install ctex pgf tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
+            tlmgr install ctex pgf tikz-cd tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
           fi
 
       - name: Render book (PDF)
