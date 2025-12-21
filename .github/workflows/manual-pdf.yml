@@ -1,0 +1,41 @@
+name: Manual PDF Build
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: release
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Point Quarto to this Python
+        run: echo "QUARTO_PYTHON=$(which python)" >> $GITHUB_ENV
+
+      - name: Install TinyTeX
+        run: quarto install tinytex --no-prompt
+
+      - name: Render book (PDF)
+        run: quarto render --to pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: quarto-book-pdf
+          path: _book/*.pdf
+          if-no-files-found: error
