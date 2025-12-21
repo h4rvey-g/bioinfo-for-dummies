@@ -1,0 +1,24 @@
+% Beautybook PDF setup for Quarto
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% Fonts (ensure these are installed on the build system)
+\setmainfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+
+% Cover theme colors
+\definecolor{coverbgcolor}{HTML}{E0E0E0}
+\definecolor{coverfgcolor}{HTML}{1F3134}
+\definecolor{coverbar}{HTML}{7C9092}
+\definecolor{bottomcolor}{HTML}{2C4F54}
+\definecolor{nuanbai}{HTML}{F5F5F5}
+
+% Beautybook options
+\coverstyle={cover-choose=cn}
+\mathstyle={math-font=plain}
+
+% Disable default title page (Beautybook cover handles it)
+\renewcommand{\maketitle}{}

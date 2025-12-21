@@ -80,6 +80,8 @@
    ```bash
    quarto render --to pdf
    ```
+   > PDF 渲染需要 XeLaTeX 与 CJK 字体（推荐 Noto 系列）。在 Ubuntu 上可安装：
+   > `sudo apt-get install fonts-noto fonts-noto-cjk`
 
 ## 📊 统计
 

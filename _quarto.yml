@@ -1,5 +1,10 @@
 project:
   type: book
+  resources:
+    - beautybook.cls
+    - stys/**
+    - bookcover_v2.png
+    - beautybook-blank.png
 
 execute:
   eval: false
@@ -51,4 +56,12 @@ format:
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
   pdf:
-    documentclass: scrreprt
+    documentclass: beautybook
+    classoption:
+      - lang=cn
+      - zihao=-4
+      - a4paper
+      - fontset=none
+    pdf-engine: xelatex
+    include-in-header: include/beautybook-preamble.tex
+    include-before-body: include/beautybook-before-body.tex
