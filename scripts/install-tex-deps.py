@@ -113,6 +113,19 @@ def wants_emoji_font(files: Iterable[Path]) -> bool:
     return False
 
 
+def wants_ctexbook() -> bool:
+    quarto = ROOT / "_quarto.yml"
+    if not quarto.exists():
+        return False
+    try:
+        text = quarto.read_text(errors="ignore")
+    except Exception:
+        return False
+    if "lang=cn" in text or "ctexbook" in text or "ctex" in text:
+        return True
+    return False
+
+
 def tlmgr_search(tlmgr_cmd: list[str], filename: str) -> set[str]:
     res = run([*tlmgr_cmd, "search", "--file", "--global", f"/{filename}"])
     pkgs: set[str] = set()
@@ -144,6 +157,7 @@ def main() -> int:
     packages, tikz_libs = parse_packages(SCAN_FILES)
     packages -= OPTIONAL_PACKAGES
     needs_emoji_font = wants_emoji_font(SCAN_FILES)
+    needs_ctexbook = wants_ctexbook()
 
     missing_files: list[str] = []
     for pkg in sorted(packages):
@@ -161,6 +175,9 @@ def main() -> int:
     if needs_emoji_font:
         if not (kpsewhich("NotoColorEmoji.ttf") or kpsewhich("NotoColorEmoji.otf")):
             missing_files.append("NotoColorEmoji.ttf")
+
+    if needs_ctexbook and not kpsewhich("ctexbook.cls"):
+        missing_files.append("ctexbook.cls")
 
     # Parse log files for missing files not directly referenced (transitive deps)
     missing_re = re.compile(r"File `([^']+)' not found")
