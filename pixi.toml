@@ -1,0 +1,15 @@
+[workspace]
+authors = ["Zhonghao Guo <babaolanqiu@gmail.com>"]
+channels = ["conda-forge"]
+name = "bioinfo-for-dummies"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+r-tinytex = ">=0.58,<0.59"
+python = ">=3.14.2,<3.15"
+jupyter = ">=1.1.1,<2"
+nbformat = ">=5.10.4,<6"
+ipykernel = ">=7.1.0,<8"

@@ -103,13 +103,25 @@
       },
     %cover-choose .initial:n = plain , % 设置 en 为初始值
   }
-\cs_new_protected:Npn \mathstyle
+\cs_if_exist:NTF \mathstyle
   {
-    \tex_afterassignment:D \__beautybook_set_mathstyle:
-    \l__beautybook_tmpa_toks
+    \cs_set_protected:Npn \mathstyle
+      {
+        \tex_afterassignment:D \__beautybook_set_mathstyle:
+        \l__beautybook_tmpa_toks
+      }
   }
-\cs_new:Npn \__beautybook_set_mathstyle:
-  { \keys_set:nV { beautybook / mathstyle } \l__beautybook_tmpa_toks }
+  {
+    \cs_new_protected:Npn \mathstyle
+      {
+        \tex_afterassignment:D \__beautybook_set_mathstyle:
+        \l__beautybook_tmpa_toks
+      }
+  }
+\cs_if_exist:NTF \__beautybook_set_mathstyle:
+  { }
+  { \cs_new:Npn \__beautybook_set_mathstyle:
+      { \keys_set:nV { beautybook / mathstyle } \l__beautybook_tmpa_toks } }
 \ExplSyntaxOff
 \RequirePackage{stys/beautybook-bottompage} %封底
 % /* -------------------------------------------------------------------------- */

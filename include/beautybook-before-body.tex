@@ -1,13 +1,15 @@
-% Beautybook cover metadata
-\subtitle{AI-era bioinformatics practice guide}
-\edition{2025 Edition}
-\bookseries{Bioinfo for Dummies}
-\pressname{}
-\presslogo{beautybook-blank.png}
-\coverimage{bookcover_v2.png}
+% Full-page PDF cover (standalone page, fixed to current paper size)
+\clearpage
+\thispagestyle{empty}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    \includegraphics[page=1,width=\paperwidth,height=\paperheight]{bookcover.pdf}%
+  }%
+}
+\null
+\clearpage
+\ClearShipoutPictureBG
 
-% Avoid missing chapter/part images by using a transparent placeholder
+% Avoid missing chapter/part images by using a placeholder
 \chapimage{beautybook-blank.png}
 \partimage{beautybook-blank.png}
-
-\makecover

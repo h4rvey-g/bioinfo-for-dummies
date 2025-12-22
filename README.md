@@ -82,8 +82,8 @@
    ```
    > PDF 渲染需要 XeLaTeX 与 CJK 字体（推荐 Noto 系列）。在 Ubuntu 上可安装：
    > `sudo apt-get install fonts-noto fonts-noto-cjk`
-   > 若使用 Beautybook 模板，还需安装 ctex 与相关包：
-   > `tlmgr install ctex pgf tikz-cd hobby tikzmark tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss`
+   > 若使用 Beautybook 模板，可运行自动依赖安装脚本：
+   > `python scripts/install-tex-deps.py`
 
 ## 📊 统计
 

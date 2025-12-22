@@ -1,0 +1,22 @@
+# 更多资源 { .unnumbered }
+
+下面是一些我个人推荐的生物信息学相关书籍和资源，供您进一步学习和探索：
+
+## AI
+
+- [https://github.com/justlovemaki/CloudFlare-AI-Insight-Daily](AI资讯日报)：汇集了最新的AI资讯和资源，帮助您了解AI领域的最新动态。可通过RSS订阅获取每日更新。
+
+## R
+
+- [R for Data Science](https://r4ds.hadley.nz/) by Hadley Wickham：这本书是学习R语言和数据科学的经典入门书籍，涵盖了数据导入、清洗、可视化和建模等内容。
+- [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham：适合有一定R基础的读者，深入探讨R语言的高级特性和编程技巧。
+- [Posit Cheatsheets](https://posit.co/resources/cheatsheets/)：由Posit（前身为RStudio）提供的一系列R语言和R包的速查表，涵盖了数据处理、可视化、建模等多个方面。
+
+## Python
+
+- [Python for Data Analysis](https://wesmckinney.com/book/) by Wes McKinney：这本书由Pandas库的作者撰写，详细介绍了如何使用Python进行数据分析。
+- [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/) by Jake VanderPlas：这是一本简明的Python入门书籍，适合希望快速从R转向Python的读者。
+
+## 生信
+
+- [Single-cell best practices](https://www.sc-best-practices.org/preamble.html)：这是一个由单细胞测序领域专家编写的最佳实践指南，涵盖了从数据预处理到下游分析的各个方面。

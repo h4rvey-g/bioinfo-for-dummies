@@ -1,13 +1,51 @@
 % Beautybook PDF setup for Quarto
 \usepackage{fontspec}
-\usepackage{xeCJK}
 
-% Fonts (ensure these are installed on the build system)
-\setmainfont{Noto Serif}
-\setsansfont{Noto Sans}
-\setmonofont{Noto Sans Mono}
-\setCJKmainfont{Noto Serif CJK SC}
-\setCJKsansfont{Noto Sans CJK SC}
+% Fonts are provided by ctex (fontset=fandol) for portability.
+
+% Use Arabic numerals for chapter numbers (affects cross-references)
+\ctexset{
+  chapter = { number = \arabic{chapter} }
+}
+
+% Full-page PDF cover on the first page
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{twemojis}
+\usepackage{fvextra}
+
+% Auto-wrap long code lines (Pandoc Highlighting + verbatim)
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{%
+  breaklines,
+  breakanywhere,
+  breaknonspaceingroup,
+  commandchars=\\\{\}%
+}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{%
+  breaklines,
+  breakanywhere,
+  breaknonspaceingroup%
+}
+
+% Breakable shaded code blocks across pages
+\definecolor{shadecolor}{RGB}{248,248,248}
+\makeatletter
+\@ifundefined{Shaded}{%
+  \newenvironment{Shaded}{%
+    \begin{tcolorbox}[enhanced,breakable,boxrule=0pt,sharp corners,%
+      colback=shadecolor,left=6pt,right=6pt,top=6pt,bottom=6pt]%
+  }{%
+    \end{tcolorbox}%
+  }%
+}{%
+  \renewenvironment{Shaded}{%
+    \begin{tcolorbox}[enhanced,breakable,boxrule=0pt,sharp corners,%
+      colback=shadecolor,left=6pt,right=6pt,top=6pt,bottom=6pt]%
+  }{%
+    \end{tcolorbox}%
+  }%
+}
+\makeatother
 
 % Cover theme colors
 \definecolor{coverbgcolor}{HTML}{E0E0E0}

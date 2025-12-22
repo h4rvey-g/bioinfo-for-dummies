@@ -3,11 +3,15 @@ project:
   resources:
     - beautybook.cls
     - stys/**
+    - bookcover.pdf
     - bookcover_v2.png
     - beautybook-blank.png
 
 execute:
   eval: false
+
+filters:
+  - filters/twemoji.lua
 
 book:
   title: "学个毛生信"
@@ -40,6 +44,7 @@ book:
         - 2.5.env-pipelines.qmd
     - 3.bioinfo_exp.qmd
     - 4.acknowledge.qmd
+    - 5.more-reading.qmd
 
 bibliography: references.bib
 date-modified: last-modified
@@ -57,11 +62,12 @@ format:
       right: "最近更新：{{< meta date-modified >}}"
   pdf:
     documentclass: beautybook
+    papersize: a4
     classoption:
       - lang=cn
       - zihao=-4
       - a4paper
-      - fontset=none
+      - fontset=fandol
     pdf-engine: xelatex
     latex-tlmgr-opts:
       - --repository

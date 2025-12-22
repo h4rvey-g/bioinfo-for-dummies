@@ -6,3 +6,12 @@ _book
 .cache
 .quarto-deno
 .deno
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+.pixi-cache
+
+# local TeX user trees (for read-only HOME)
+.texmf
+.texmf-var
+.texmf-config

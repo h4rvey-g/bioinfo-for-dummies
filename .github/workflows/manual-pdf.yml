@@ -51,19 +51,20 @@ jobs:
             quarto install tinytex --no-prompt
           fi
 
-      - name: Install TeX packages (ctex)
-        run: |
-          TLMGR="$HOME/.TinyTeX/bin/$(uname -m)-linux/tlmgr"
-          if [ -x "$TLMGR" ]; then
-            "$TLMGR" option repository https://mirror.ctan.org/systems/texlive/tlnet
-            "$TLMGR" install ctex pgf tikz-cd hobby tikzmark tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
-          else
-            tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-            tlmgr install ctex pgf tikz-cd hobby tikzmark tcolorbox tabularray thmtools ninecolors bropd imakeidx titlesec ulem varwidth adjustbox extarrows anyfontsize appendix enumitem jknapltx psnfss
-          fi
+      - name: Install TeX packages (auto-detect)
+        run: python scripts/install-tex-deps.py
 
       - name: Render book (PDF)
-        run: quarto render --to pdf
+        run: |
+          set +e
+          quarto render --to pdf
+          status=$?
+          if [ $status -ne 0 ]; then
+            python scripts/install-tex-deps.py
+            quarto render --to pdf
+          else
+            exit 0
+          fi
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
