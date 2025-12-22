@@ -46,7 +46,6 @@ book:
     - 4.acknowledge.qmd
     - 5.more-reading.qmd
 
-bibliography: references.bib
 date-modified: last-modified
 date-format: "YYYY-MM-DD"
 
