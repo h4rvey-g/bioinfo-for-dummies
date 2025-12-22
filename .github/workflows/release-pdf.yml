@@ -1,6 +1,7 @@
 name: Release PDF
 
 on:
+  workflow_dispatch: {}
   push:
     tags:
       - "*"
