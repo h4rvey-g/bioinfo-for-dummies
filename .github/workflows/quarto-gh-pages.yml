@@ -45,6 +45,9 @@ jobs:
       - name: Render book (HTML only)
         run: quarto render --to html
 
+      - name: Generate sitemap.xml
+        run: python scripts/generate_sitemap.py --base-url https://b4d.h4rvey.com
+
       - name: Upload rendered book artifact
         uses: actions/upload-pages-artifact@v3
         with:

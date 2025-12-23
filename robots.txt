@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://b4d.h4rvey.com/sitemap.xml

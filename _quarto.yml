@@ -6,6 +6,7 @@ project:
     - bookcover.pdf
     - bookcover_v2.png
     - beautybook-blank.png
+    - robots.txt
 
 execute:
   eval: false
