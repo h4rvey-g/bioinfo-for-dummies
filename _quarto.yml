@@ -60,6 +60,7 @@ format:
     include-after-body: include/cusdis.html
     page-footer:
       right: "最近更新：{{< meta date-modified >}}"
+    lightbox: true
   pdf:
     documentclass: beautybook
     papersize: a4
