@@ -1,5 +1,6 @@
 project:
   type: book
+  pre-render: scripts/write_version.sh
   resources:
     - beautybook.cls
     - stys/**

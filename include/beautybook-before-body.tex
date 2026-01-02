@@ -13,3 +13,10 @@
 % Avoid missing chapter/part images by using a placeholder
 \chapimage{beautybook-blank.png}
 \partimage{beautybook-blank.png}
+
+% One-time version stamp on the first content page (after cover)
+\AddToHookNext{shipout/foreground}{%
+  \AtPageLowerLeft{%
+    \raisebox{18pt}{\hspace*{72pt}\textsf{\small Version: \bookversion\ (\bookversiondate)}}%
+  }%
+}

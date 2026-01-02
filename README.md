@@ -2,6 +2,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-bioinfo--for--dummies-blue?logo=github)](https://github.com/h4rvey-g/bioinfo-for-dummies)
 [![Quarto](https://img.shields.io/badge/Made%20with-Quarto-75AADB?logo=quarto)](https://quarto.org)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 > **AI时代的生物信息学实践指南** — 最小化编程，最大化AI使用
 
@@ -76,7 +77,7 @@
    quarto render --to html
    ```
 
-5. **渲染为PDF**
+5. **渲染为PDF** （使用[BeautyBook](https://github.com/BeautyLaTeX/Beautybook)模板）
    ```bash
    quarto render --to pdf
    ```
@@ -88,6 +89,10 @@
 ## 📊 统计
 
 查看本书的[访问统计](https://cloud.umami.is/share/eFyIpuQq1Nhdxj77)
+
+## 📄 许可
+
+本书采用 **CC BY-NC-SA 4.0** 许可协议发布，详见 `LICENSE` 。
 
 ## ☕ 支持本书
 

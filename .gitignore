@@ -15,3 +15,6 @@ _book
 .texmf
 .texmf-var
 .texmf-config
+
+# auto-generated version stamp
+include/version.tex

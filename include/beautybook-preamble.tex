@@ -22,6 +22,11 @@
   breaknonspaceingroup,
   commandchars=\\\{\}%
 }
+
+% Version info (auto-filled at render time)
+\providecommand{\bookversion}{unknown}
+\providecommand{\bookversiondate}{unknown}
+\InputIfFileExists{include/version.tex}{}{}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{%
   breaklines,
   breakanywhere,
