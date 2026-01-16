@@ -1,0 +1,6 @@
+{
+  "framework": "other",
+  "installCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt quarto-cli",
+  "buildCommand": "quarto render --to html && python scripts/generate_sitemap.py --base-url https://b4d.h4rvey.com",
+  "outputDirectory": "_book"
+}
