@@ -86,6 +86,20 @@
    > 若使用 Beautybook 模板，可运行自动依赖安装脚本：
    > `python scripts/install-tex-deps.py`
 
+### Vercel 部署
+
+已提供 `vercel.json` 作为 Vercel 的构建配置。导入仓库后无需额外 UI 配置：
+
+```json
+{
+  "installCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt",
+  "buildCommand": "bash scripts/vercel_build.sh",
+  "outputDirectory": "_book"
+}
+```
+
+构建脚本在 `scripts/vercel_build.sh`，会自动拉取最新 Quarto CLI 并渲染 HTML，同时生成 sitemap。
+
 ## 📊 统计
 
 查看本书的[访问统计](https://cloud.umami.is/share/eFyIpuQq1Nhdxj77)
