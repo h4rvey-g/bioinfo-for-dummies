@@ -1,5 +1,5 @@
 {
   "installCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt",
-  "buildCommand": "QUARTO_VERSION=$(curl -fsSL https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | python -c \"import json,sys; print(json.load(sys.stdin)['tag_name'].lstrip('v'))\") && curl -fsSL -o /tmp/quarto.tgz https://github.com/quarto-dev/quarto-cli/releases/download/v$QUARTO_VERSION/quarto-$QUARTO_VERSION-linux-amd64.tar.gz && tar -xzf /tmp/quarto.tgz -C /tmp && /tmp/quarto-$QUARTO_VERSION/bin/quarto render --to html && python scripts/generate_sitemap.py --base-url https://b4d.h4rvey.com",
+  "buildCommand": "bash scripts/vercel_build.sh",
   "outputDirectory": "_book"
 }
