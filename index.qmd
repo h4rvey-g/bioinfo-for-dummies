@@ -38,7 +38,7 @@ AI时代，让我们每个人都可以以最低的学习成本来完成复杂的
 - **PDF下载**: [https://github.com/h4rvey-g/bioinfo-for-dummies/releases](https://github.com/h4rvey-g/bioinfo-for-dummies/releases)
 - **许可协议**: 本书采用**CC BY-NC-SA 4.0**许可协议发布
 
-如果您觉得本书对您有所帮助，可以考虑请我**喝杯咖啡**😋。图 @fig-donate-qr 是打赏二维码。
+如果您觉得本书对您有所帮助，可以考虑请我**喝杯咖啡**😋。@fig-donate-qr 是打赏二维码。
 
 ![打赏](img/qr_code.jpg){#fig-donate-qr width=300px}
 
