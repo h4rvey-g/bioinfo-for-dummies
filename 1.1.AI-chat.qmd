@@ -1,8 +1,12 @@
 # 使用AI对话：Cherry Studio {#sec-ai-chat}
+
 ## 背景
+
 大毛是一位刚刚入组的研一临床专硕学生，为了毕业和申博，他迫切地需要有一篇自己的文章。但是，大毛之前没有多少做实验的经验，平时繁重的临床工作也让他很难抽出时间去实验室。经过多方调研，他发现生信文章是最适合他目前情况的文章类型。幸运的是，最近几年AI技术飞速发展，让他可以更容易地入门生信分析。
 
 选择哪个AI呢？从师兄师姐那里，大毛打听到DeepSeek和豆包好像比较好用，而且网页版可以免费使用。但用了一段时间后，大毛发现一些不尽如人意的地方，一是总感觉AI还不够智能，对前沿的专业问题回答得不够准确；二是不能理解他上传的PDF或表格数据，有时会胡言乱语。
+
+大毛想知道，有没有什么方法，可以让AI的回答更加准确、规范、个性化呢？
 
 ## 简介
 
@@ -10,7 +14,7 @@
 
 ### 官方网页界面 {#sec-official-web}
 
-大多数AI服务提供商都会提供一个官方的网页界面，用户可以直接在浏览器中与AI进行对话。例如：[ChatGPT](https://chatgpt.com)、[Gemini](https://gemini.google.com/app)等。
+大多数AI服务提供商都会提供一个官方的网页界面，用户可以直接在浏览器中与AI进行对话。例如：[ChatGPT](https://chatgpt.com)、[Gemini](https://gemini.google.com/app)、[豆包](https://www.doubao.com)、[DeepSeek](https://www.deepseek.com)等。
 
 - **优点**：开箱即用，操作简单；适合移动端使用。
 - **缺点**：功能有限，无法进行个性化定制；可能需要注册会员，有使用次数限制；可能有智能缩水。
@@ -74,10 +78,10 @@ API密钥：sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 - 查看[默认模型设置](https://docs.cherry-ai.com/cherry-studio/preview/settings/default-models)，将常用模型设置为默认模型，方便后续使用。建议将默认助手模型设置为最智能的模型，例如gemini-2.5-pro，快速模型和翻译模型设置为响应速度较快的模型，例如gemini-2.5-flash。
 - 查看[对话界面](https://docs.cherry-ai.com/cherry-studio/preview/chat)，开始与AI进行对话。
-  - 上下文数设置为无限
+  - **上下文数**设置为无限
   - 代码块设置中，开启代码编辑器的所有功能
   - 输入设置中，打开“长文本粘贴为文件”和“三个空格快速翻译”
-  - 在对话框处，打开“思维链长度”，设置为“斟酌”或“自动”。打开“网络搜索”，设置为“模型内置”
+  - 在对话框处，打开“思维链长度”，设置为“斟酌”或“自动”。打开“网络搜索”，设置为“模型内置”（如果模型没有内置的网络搜索功能的话，可以自行配置其他搜索服务）
 - 您可以配置来自多个服务商的模型，这样可以在一个不能用的时候切换到另一个。
 
 ## 配置提示词（Prompts） {#sec-config-prompts}
@@ -231,6 +235,7 @@ As The Bioinformatics Fixer, you must follow the above Rules and execute tasks a
 
 调用 API 时，有时会出现错误，此时Cherry Studio会弹出错误提示及错误码，您可以根据下面的表格来排查和解决常见问题。
 
+
 | 错误码 | 描述                   |
 | ------ | ---------------------- |
 | 400    | 请求格式错误或参数无效 |
@@ -239,7 +244,9 @@ As The Bioinformatics Fixer, you must follow the above Rules and execute tasks a
 | 429    | 请求频率过高           |
 | 500    | 服务器内部错误         |
 
+
 更细的返回一般在 `error.code` 或响应体里会出现：
+
 
 | 错误码 | 状态                | 描述                       | 解决方案                     |
 | ------ | ------------------- | -------------------------- | ---------------------------- |
@@ -254,6 +261,7 @@ As The Bioinformatics Fixer, you must follow the above Rules and execute tasks a
 | 503    | UNAVAILABLE         | 服务暂时不可用             | 等待一段时间后重试           |
 | 504    | DEADLINE_EXCEEDED   | 请求超时                   | 减少输入大小或重试请求       |
 
+
 ## （可选）配置MCP {#sec-config-mcp}
 
-可以配置Tavily、Sequential thinking等MCP插件，详见 @sec-codex-mcp 。不过我认为对于单纯对话来说，MCP的作用并不大，而且会拖延响应速度，所以这里作为可选项。
+可以配置Tavily、Grok-tavily等MCP插件，详见 @sec-codex-mcp 。不过我认为对于单纯对话来说，MCP的作用并不大，而且会拖延响应速度，所以这里作为可选项。

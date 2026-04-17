@@ -51,6 +51,10 @@ book:
 date-modified: last-modified
 date-format: "YYYY-MM-DD"
 
+crossref:
+  fig-title: 图
+  fig-prefix: 图
+
 format:
   html:
     theme:

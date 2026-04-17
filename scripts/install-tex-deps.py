@@ -6,6 +6,7 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+from datetime import date
 from pathlib import Path
 from typing import Iterable
 
@@ -28,6 +29,7 @@ PKG_RE = re.compile(r"\\(?:RequirePackage|usepackage)(?:\[[^\]]*\])?\{([^}]+)\}(
 TIKZ_RE = re.compile(r"\\usetikzlibrary\{([^}]+)\}")
 
 OPTIONAL_PACKAGES = {"mtpro2"}
+HISTORIC_TEXLIVE_REPO = "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive"
 
 
 def run(cmd: list[str]) -> subprocess.CompletedProcess:
@@ -70,6 +72,32 @@ def find_kpsewhich() -> str:
             return str(candidates[0])
 
     return "kpsewhich"
+
+
+def texlive_year(tlmgr: str) -> int | None:
+    res = run([tlmgr, "--version"])
+    text = f"{res.stdout}\n{res.stderr}"
+    m = re.search(r"version\s+(\d{4})", text)
+    if not m:
+        return None
+    return int(m.group(1))
+
+
+def choose_repository(tlmgr: str) -> str | None:
+    explicit = os.environ.get("TEXLIVE_REPOSITORY")
+    if explicit:
+        return explicit
+
+    year = texlive_year(tlmgr)
+    if year is None:
+        return None
+
+    # Once a new TeX Live release exists, older local trees must use the
+    # matching frozen historic repository instead of mirror.ctan.org.
+    if year < date.today().year:
+        return f"{HISTORIC_TEXLIVE_REPO}/{year}/tlnet-final"
+
+    return None
 
 
 def kpsewhich(file: str) -> bool:
@@ -137,7 +165,11 @@ def tlmgr_search(tlmgr_cmd: list[str], filename: str) -> set[str]:
 
 def main() -> int:
     tlmgr = find_tlmgr()
+    repository = choose_repository(tlmgr)
     tlmgr_cmd = [tlmgr]
+    if repository:
+        print(f"Using TeX Live repository: {repository}")
+        tlmgr_cmd.extend(["--repository", repository])
 
     # Fallback to user mode if the TinyTeX tree is not writable (common on shared systems)
     tlpkg_dir = Path.home() / ".TinyTeX" / "tlpkg"
@@ -152,6 +184,8 @@ def main() -> int:
         os.environ["TEXMFVAR"] = str(texmf_var)
         os.environ["TEXMFCONFIG"] = str(texmf_config)
         tlmgr_cmd = [tlmgr, "--usermode"]
+        if repository:
+            tlmgr_cmd.extend(["--repository", repository])
         run([*tlmgr_cmd, "init-usertree"])
 
     packages, tikz_libs = parse_packages(SCAN_FILES)

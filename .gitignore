@@ -19,3 +19,4 @@ _book
 # auto-generated version stamp
 include/version.tex
 .serena
+.ace-tool/

@@ -1,5 +1,4 @@
-% Full-page PDF cover (standalone page, fixed to current paper size)
-\clearpage
+% Full-page PDF cover on the very first page
 \thispagestyle{empty}
 \AddToShipoutPictureBG*{%
   \AtPageLowerLeft{%
@@ -9,6 +8,29 @@
 \null
 \clearpage
 \ClearShipoutPictureBG
+
+% Make the table of contents the first numbered page.
+% This file is inserted immediately before \tableofcontents.
+\makeatletter
+\@mainmattertrue
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Pandoc emits \mainmatter again after \tableofcontents; keep it from
+% resetting the page number at the first chapter.
+\renewcommand{\mainmatter}{}
+
+% Do not let \tableofcontents start with another \clearpage / \cleardoublepage,
+% otherwise LaTeX inserts a blank page after the cover and the TOC becomes page 3.
+\let\beautybookorigtableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{%
+  \begingroup
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+  \beautybookorigtableofcontents
+  \endgroup
+}
+\makeatother
 
 % Avoid missing chapter/part images by using a placeholder
 \chapimage{beautybook-blank.png}
