@@ -92,7 +92,7 @@
 
 ```json
 {
-  "installCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt",
+  "installCommand": "python -m venv .venv && . .venv/bin/activate && python -m pip install --upgrade pip && python -m pip install -r requirements.txt",
   "buildCommand": "bash scripts/vercel_build.sh",
   "outputDirectory": "_book"
 }
